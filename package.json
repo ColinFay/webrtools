@@ -1,0 +1,11 @@
+{
+  "name": "webrtools",
+  "version": "1.0.0",
+  "description": "Random tools for working with webr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Colin Fay <contact@colinfay.me> (https://colinfay.me)",
+  "license": "MIT"
+}
