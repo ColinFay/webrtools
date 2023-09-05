@@ -1,7 +1,7 @@
 #!/usr/bin/env Rscript
 
 if (!requireNamespace("pak", quietly = TRUE)) {
-  install.packages("pak")
+  install.packages("pak", dependencies = TRUE)
 }
 
 if (is.na(commandArgs(trailingOnly = TRUE)[1])) {
