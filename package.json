@@ -1,6 +1,6 @@
 {
   "name": "webrtools",
-  "version": "1.0.1",
+  "version": "0.0.1",
   "description": "Random tools for working with webr",
   "main": "index.js",
   "scripts": {
