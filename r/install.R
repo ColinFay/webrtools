@@ -20,4 +20,4 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 
 remotes::install_github("colinfay/webrtools", subdir = "r-pkg")
 
-webrtools::install(pk_to_install, path_to_installation)
+webrtools::download_packs_and_deps(pk_to_install, path_to_installation)

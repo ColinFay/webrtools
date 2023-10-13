@@ -1,13 +1,10 @@
-#' Title
+#' Download packages and deps from DESCRIPTION
 #'
-#' Description
-#'
-#' @param
+#' @param description path to DESCRIPTION
+#' @param path_to_installation passed to `download_pak_and_deps()`
 #'
 #' @export
-#'
-#' @example
-install_from_desc <- function(
+download_packs_and_deps_from_desc <- function(
   description,
   path_to_installation = "./webr_packages"
 ) {

@@ -6,9 +6,11 @@
 #'
 #' @export
 #'
-#' @example
-#' downloaded_pak_and_deps("golem", tempdir())
-downloaded_pak_and_deps <- function(
+#' @examples
+#' if (FALSE){
+#'  download_packs_and_deps("golem", tempdir())
+#' }
+download_packs_and_deps <- function(
   pk_to_install,
   path_to_installation = "./webr_packages"
 ){
