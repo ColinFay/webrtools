@@ -14,6 +14,6 @@ download_packs_and_deps_from_desc <- function(
   deps <- desc::desc_get_deps(description)
 
   for (pak in deps$package) {
-    downloaded_pak_and_deps(pak, path_to_installation = path_to_installation)
+    download_packs_and_deps(pak, path_to_installation = path_to_installation)
   }
 }
