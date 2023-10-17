@@ -23,25 +23,30 @@ function getDirectoryTree(dirPath, currentPath = '') {
   return tree;
 }
 
-async function loadPackages(webR, dirPath) {
+async function loadFolder(webR, dirPath, outputdir = "/usr/lib/R/library") {
   const files = getDirectoryTree(
     dirPath
   )
   for await (const file of files) {
     if (file.type === 'directory') {
       await globalThis.webR.FS.mkdir(
-        `/usr/lib/R/library/${file.path}`,
+        `${outputdir}/${file.path}`,
       );
     } else {
-      const data = fs.readFileSync(`webr_packages/${file.path}`);
+      const data = fs.readFileSync(`${dirPath}/${file.path}`);
       await globalThis.webR.FS.writeFile(
-        `/usr/lib/R/library/${file.path}`,
+        `${outputdir}/${file.path}`,
         data
       );
     }
   }
 }
 
+async function loadPackages(webR, dirPath) {
+  await loadFolder(webR, dirPath, outputdir = "/usr/lib/R/library");
+}
+
 module.exports = {
+  loadFolder: loadFolder,
   loadPackages: loadPackages
 };

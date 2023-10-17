@@ -1,3 +1,4 @@
-const lib = require('./src/load.js')
+const load = require('./src/load.js')
 
-exports.loadPackages = lib.loadPackages
+exports.loadPackages = load.loadPackages;
+exports.loadFolder = load.loadFolder;
