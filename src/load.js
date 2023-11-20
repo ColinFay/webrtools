@@ -1,49 +1,15 @@
-const fs = require('fs');
-const path = require('path');
-
-// Recursive function to get files, thank you chatGPT
-function getDirectoryTree(dirPath, currentPath = '') {
-  const items = fs.readdirSync(path.join(dirPath, currentPath));
-  const tree = [];
-
-  for (const item of items) {
-    const itemPath = path.join(dirPath, currentPath, item);
-    const isDirectory = fs.statSync(itemPath).isDirectory();
-    const relativePath = path.join(currentPath, item);
-
-    if (isDirectory) {
-      const subtree = getDirectoryTree(dirPath, relativePath);
-      tree.push({ path: relativePath, type: 'directory' });
-      tree.push(...subtree);
-    } else {
-      tree.push({ path: relativePath, type: 'file' });
-    }
-  }
-
-  return tree;
-}
-
 async function loadFolder(webR, dirPath, outputdir = "/usr/lib/R/library") {
-  const files = getDirectoryTree(
-    dirPath
-  )
-  for await (const file of files) {
-    if (file.type === 'directory') {
-      await globalThis.webR.FS.mkdir(
-        `${outputdir}/${file.path}`,
-      );
-    } else {
-      const data = fs.readFileSync(`${dirPath}/${file.path}`);
-      await globalThis.webR.FS.writeFile(
-        `${outputdir}/${file.path}`,
-        data
-      );
-    }
-  }
+  throw new Error("Deprecated, please use webR.FS.mount instead.");
 }
 
-async function loadPackages(webR, dirPath) {
-  await loadFolder(webR, dirPath, outputdir = "/usr/lib/R/library");
+async function loadPackages(webR, dirPath, libName = "webr_packages") {
+  // Create a custom lib so that we don't have to worry about
+  // overwriting any packages that are already installed.
+  await webR.FS.mkdir(`/usr/lib/R/${libName}`)
+  // Mount the custom lib
+  await webR.FS.mount("NODEFS", { root: dirPath }, `/usr/lib/R/${libName}`);
+  // Add the custom lib to the R search path
+  await webR.evalR(`.libPaths(c('/usr/lib/R/${libName}', .libPaths()))`);
 }
 
 module.exports = {
