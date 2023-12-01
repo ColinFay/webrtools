@@ -76,7 +76,3 @@ const webR = new WebR();
 })();
 ```
 
-## Examples
-
-Git clone this project, then:
-
