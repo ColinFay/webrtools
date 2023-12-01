@@ -29,7 +29,10 @@ download_packs_and_deps <- function(
       use.names = FALSE,
       tools::package_dependencies(
         recursive = TRUE,
-        pk_to_install
+        pk_to_install,
+        db = utils::available.packages(
+          contriburl = repos
+        )
       )
     )
   )
