@@ -1,3 +1,7 @@
+# 0.0.3.9000
+
+* Working on a `Library` class series for loading package in webR
+
 # 0.0.3
 
 * Now using webR.FS.mount to load the packages instead of doing it ourselves. Requires web >= 0.2.2

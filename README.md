@@ -76,3 +76,14 @@ const webR = new WebR();
 })();
 ```
 
+## Examples
+
+Git clone this project, then:
+
+### Passing args to janitor::make_clean_names()
+
+```
+Rscript ./r/install.R janitor
+node examples/janitor.js "Hello world"
+node examples/janitor.js "This is another test"
+```
