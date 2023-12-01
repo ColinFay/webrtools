@@ -22,6 +22,8 @@ download_packs_and_deps <- function(
     substr(R.version$minor, 1, 1)
   )
 
+  options(repos = c(webr = repos))
+
   deps <- unique(
     unlist(
       use.names = FALSE,
