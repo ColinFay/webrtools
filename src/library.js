@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 
 class Library {
   constructor(lib) {
@@ -21,7 +23,35 @@ class Library {
 
 class LibraryFromLocalFolder extends Library{
 
+  load (webR){
+    throw new Error("load is not supported for LibraryFromLocalFolder, use mountAndLoad instead");
+  }
+
   async mountAndLoad(webR, localDir) {
+
+    // bundling pkgdload
+    await webR.FS.mkdir('/home/webrtoolslib');
+    await webR.evalR(`.libPaths(c('/home/webrtoolslib', .libPaths()))`);
+
+    // Download image data
+    const datae = fs.readFileSync(
+      path.join(__dirname, 'src/webrtools_deps/webrtools_deps.data')
+    );
+    console.log(data);
+    const metadata = fs.readFileSync(
+      path.join(__dirname, 'src/webrtools_deps/webrtools_deps.js.metadata')
+    );
+    console.log(metadata);
+
+    // Mount image data
+    const options2 = {
+      packages: [{
+        blob: await new Blob([datae]),
+        metadata: await JSON.parse(metadata),
+      }],
+    }
+    await webR.FS.mount("WORKERFS", options2, '/data');
+
     const libraryPath = `/home/${this.lib}`;
 
     await webR.FS.mkdir(libraryPath);

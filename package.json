@@ -4,11 +4,14 @@
   "description": "Random tools for working with webr",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --forceExit"
   },
   "author": "Colin Fay <contact@colinfay.me> (https://colinfay.me)",
   "license": "MIT",
   "dependencies": {
     "webr": "^0.2.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
